@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德州扑克 · 杂志专题</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f6f4f0;
+      color: #2b2b2b;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 — 杂志横幅风格 */
+    .hero {
+      background: linear-gradient(145deg, #1a1c1e 0%, #2c2f33 100%);
+      min-height: 62vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem 3.5rem;
+      position: relative;
+      border-bottom: 6px solid #d9b382;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(90deg, #d9b382 0px, #d9b382 12px, transparent 12px, transparent 24px);
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: #ece7e0;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      color: #c7b9a6;
+      font-weight: 300;
+      max-width: 680px;
+      margin: 0.6rem auto 0;
+      border-top: 1px solid rgba(215, 190, 160, 0.3);
+      padding-top: 1.2rem;
+      letter-spacing: 0.3px;
+    }
+    .hero-label {
+      display: inline-block;
+      margin-top: 2rem;
+      background: #d9b382;
+      color: #1a1c1e;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.3rem 1.2rem;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* 浅色正文区 杂志卡片风格 */
+    .content {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 5rem;
+    }
+
+    .magazine-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 2.8rem;
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2.2rem 2.8rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s ease;
+      border: 1px solid #eae6df;
+    }
+    .feature-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+    }
+
+    .feature-card h2 {
+      font-size: 1.8rem;
+      font-weight: 440;
+      letter-spacing: -0.3px;
+      color: #2b2b2b;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #d9b382;
+      display: inline-block;
+    }
+    .feature-card h2 span {
+      font-weight: 300;
+      color: #857a6e;
+      font-size: 0.9rem;
+      margin-left: 8px;
+    }
+    .feature-card p {
+      margin-top: 1rem;
+      font-size: 1.05rem;
+      color: #3d3d3d;
+    }
+    .feature-card p + p {
+      margin-top: 0.8rem;
+    }
+
+    .accent-link {
+      color: #9b6b43;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .accent-link:hover {
+      color: #7a4f2e;
+      border-bottom-color: #7a4f2e;
+    }
+
+    /* 特点/场景 灵活小卡片区 */
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0 0;
+    }
+    .grid-item {
+      background: #faf8f5;
+      padding: 1.6rem 1.4rem;
+      border-radius: 20px;
+      border-left: 4px solid #d9b382;
+    }
+    .grid-item h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #1e1e1e;
+      margin-bottom: 0.6rem;
+    }
+    .grid-item p {
+      font-size: 0.98rem;
+      color: #4d4a45;
+      margin: 0;
+    }
+
+    /* FAQ 摘要 */
+    .faq-summary {
+      margin: 2.5rem 0 1.2rem;
+      background: #f3efe9;
+      border-radius: 24px;
+      padding: 1.8rem 2.2rem;
+    }
+    .faq-summary h3 {
+      font-size: 1.3rem;
+      font-weight: 440;
+      color: #2b2b2b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .faq-summary h3::before {
+      content: '▸';
+      color: #9b6b43;
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+    .faq-summary p {
+      margin: 0.8rem 0 0 1.8rem;
+      color: #4a4540;
+    }
+
+    /* 页尾访问提示 */
+    .footer-remark {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #ddd6cc;
+      text-align: center;
+      font-size: 1rem;
+      color: #5f5952;
+    }
+    .footer-remark a {
+      color: #9b6b43;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #9b6b43;
+    }
+    .footer-remark a:hover {
+      color: #7a4f2e;
+      border-bottom-style: solid;
+    }
+    .footer-note {
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: #8a837a;
+      letter-spacing: 0.2px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      .hero { min-height: 50vh; padding: 3rem 1.5rem; }
+      .content { padding: 2.2rem 1.2rem 4rem; }
+      .feature-card { padding: 1.8rem 1.4rem; }
+      .feature-card h2 { font-size: 1.5rem; }
+      .highlight-grid { grid-template-columns: 1fr; }
+      .faq-summary { padding: 1.4rem 1.4rem; }
+      .faq-summary p { margin-left: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图：杂志横幅 -->
+  <header class="hero">
+    <div class="hero-label">专题 · 再次收藏</div>
+    <h1 class="hero-title">回到牌桌</h1>
+    <p class="hero-sub">那些值得反复品味的策略、耐心与瞬间<br>一本关于德州扑克的私人笔记</p>
+  </header>
+
+  <!-- 浅色正文区：三段自然介绍 + 场景 + FAQ -->
+  <main class="content">
+    <div class="magazine-intro">
+
+      <!-- 第一段：再次访问的缘由 -->
+      <div class="feature-card">
+        <h2>重访的理由 <span>· 不止于胜负</span></h2>
+        <p>许多朋友最初接触<a href="https://cn-depu.com" class="accent-link">德州扑克</a>，是从一场热闹的聚会开始的。随着时间推移，翻看旧笔记或手牌记录时，总能发现新的角度——某个之前忽略的底池赔率，或者一手被遗忘的诈唬。这个站点就像一本可以反复翻阅的杂志，每次回来都会注意到不一样的细节。</p>
+        <p>这也是我们持续整理、更新内容的原因：让再次访问的人不至于空手而归。无论是新手还是偶尔玩两局的爱好者，都能在这里找到值得停留的段落。</p>
+      </div>
+
+      <!-- 第二段：收藏 & 持续关注 -->
+      <div class="feature-card">
+        <h2>收藏夹里的常客 <span>· 慢下来，更好读</span></h2>
+        <p>一个页面值得被收藏，往往不是因为它信息量最大，而是因为它给思考留出了空间。关于位置、范围、下注尺度的讨论，我们尽量不写成生硬的教程，而是像朋友之间的复盘——有背景，有犹豫，也有恍然大悟的瞬间。</p>
+        <p>如果你也倾向于静下心来看几手牌、想一个决策点，不妨把这里加入书签。内容不定期更新，但每一次更新都希望带来一点新的启发。持续关注，并不是为了追逐热点，而是为了在牌桌之外多一种理解游戏的方式。</p>
+      </div>
+
+      <!-- 第三段：特点与场景 用grid -->
+      <div class="feature-card" style="padding-bottom: 1.8rem;">
+        <h2>牌桌之外 <span>· 三种熟悉的场景</span></h2>
+        <div class="highlight-grid">
+          <div class="grid-item">
+            <h3>通勤路上</h3>
+            <p>一篇手牌分析或概念短文，刚好够两站地铁。不赶时间，只求读得进去。</p>
+          </div>
+          <div class="grid-item">
+            <h3>周末复盘</h3>
+            <p>把过去一周的牌局记录下来，对照站内的思路，看看有没有遗漏的细节。</p>
+          </div>
+          <div class="grid-item">
+            <h3>朋友闲聊</h3>
+            <p>读到有意思的牌例，分享给一起玩的人。话题自然延续到下一场牌局。</p>
+          </div>
+        </div>
+        <p style="margin-top: 1.4rem; font-style: italic; color: #5f5952;">这些场景的共同点：不需要很用力，但每次都会多看懂一点。</p>
+      </div>
+
+      <!-- FAQ 摘要（非完整FAQ，仅做内容延伸） -->
+      <div class="faq-summary">
+        <h3>常见疑问 · 摘要</h3>
+        <p><strong>这里的文章适合完全没接触过的人吗？</strong> 大部分内容默认读者了解基本规则，但每篇都会交代背景，零基础读者可以从基础标签开始浏览。</p>
+        <p><strong>更新频率是怎样的？</strong> 不固定，但每月至少有一篇新内容或旧文修订。更看重质量而不是数量。</p>
+        <p><strong>可以留言或提问吗？</strong> 目前主要通过收藏和再次访问来互动——如果你有特别想了解的话题，随时可以通过站内线索找到我们。</p>
+      </div>
+
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <footer class="footer-remark">
+      <p>你已经读到末尾了，也许这正是重新打开<a href="https://cn-depu.com">德州扑克</a>的好时机。<br>页面会慢慢生长，欢迎再次回来。</p>
+      <div class="footer-note">—— 杂志专题 · 第零期 ——</div>
+    </footer>
+  </main>
+
+</body>
+</html>
